@@ -10,11 +10,17 @@ use std::mem::{size_of, size_of_val};
 pub mod matrix_algebra {
     use crate::custom_container::{darray_2d, Harrt};
 
+    ///
+    /// Matrix trait definition
+    ///
     pub trait Matrix {}
     pub trait MatrixFns {
         fn identity(row_size: usize, cols_size: usize) -> Self;
     }
 
+    ///
+    /// Matrix definition
+    ///
     pub struct Matrix2x2(pub [[f32; 2]; 2]);
     pub struct Matrix3x3(pub [[f32; 3]; 3]);
     pub struct Matrix4x4(pub [[f32; 4]; 4]);
@@ -33,7 +39,9 @@ pub mod matrix_algebra {
         pub m_data: darray_2d<f32>,
     }
 
-    /// Matrix higherarchy
+    ///
+    /// Matrix2x2 implementation
+    ///
     impl Matrix for Matrix2x2 {}
     impl Matrix2x2 {
         pub fn identity() -> Self {
@@ -41,6 +49,9 @@ pub mod matrix_algebra {
         } // identity
     }
 
+    ///
+    /// Matrix3x3 implementation
+    ///
     impl Matrix for Matrix3x3 {}
     impl Matrix3x3 {
         pub fn identity() -> Self {
@@ -48,6 +59,9 @@ pub mod matrix_algebra {
         } // identity
     }
 
+    ///
+    /// Matrix4x4 implementation
+    ///
     impl Matrix for Matrix4x4 {}
     impl Matrix4x4 {
         pub fn identity() -> Self {
@@ -60,6 +74,9 @@ pub mod matrix_algebra {
         } // identity
     }
 
+    ///
+    /// MatrixNxN implementation
+    ///
     impl MatrixFns for MatrixNxN {
         fn identity(rows_size: usize, cols_size: usize) -> Self {
             let mut arr = Harrt::heap_array2d_zeros_f32(rows_size, cols_size);
@@ -89,6 +106,9 @@ pub mod matrix_algebra {
         } // new
     }
 
+    ///
+    /// MatrixNxM implementation
+    ///
     impl MatrixFns for MatrixNxM {
         fn identity(rows_size: usize, cols_size: usize) -> Self {
             Self {
