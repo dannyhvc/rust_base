@@ -1,11 +1,9 @@
-#[allow(non_camel_case_types, unused, non_snake_case)]
-
 /// Heap Array Tools.
 /// methods to work with and create a heap array.
 
-pub type darray<T> = Box<[T]>;
-pub type darray_2d<T> = darray<darray<T>>;
-pub type darray_3d<T> = darray_2d<darray<T>>;
+pub type Darray<T> = Box<[T]>;
+pub type Darray2d<T> = Darray<Darray<T>>;
+pub type Darray3d<T> = Darray2d<Darray<T>>;
 
 pub struct Harrt;
 impl Harrt {
@@ -24,15 +22,15 @@ impl Harrt {
     pub fn heap_array2d_create<T: Clone>(
         rows_size: usize,
         cols_size: usize,
-    ) -> darray_2d<Option<T>> {
+    ) -> Darray2d<Option<T>> {
         vec![vec![None; cols_size].into_boxed_slice(); rows_size].into_boxed_slice()
     }
 
-    pub fn heap_array2d_zeros_f32(rows_size: usize, cols_size: usize) -> darray_2d<f32> {
+    pub fn heap_array2d_zeros_f32(rows_size: usize, cols_size: usize) -> Darray2d<f32> {
         vec![vec![0f32; cols_size].into_boxed_slice(); rows_size].into_boxed_slice()
     }
 
-    pub fn heap_array2d_zeros_i32(rows_size: usize, cols_size: usize) -> darray_2d<i32> {
+    pub fn heap_array2d_zeros_i32(rows_size: usize, cols_size: usize) -> Darray2d<i32> {
         vec![vec![0i32; cols_size].into_boxed_slice(); rows_size].into_boxed_slice()
     }
 
@@ -40,7 +38,7 @@ impl Harrt {
         xdim_size: usize,
         ydim_size: usize,
         zdim_size: usize,
-    ) -> darray_3d<Option<T>> {
+    ) -> Darray3d<Option<T>> {
         vec![
             vec![vec![None; zdim_size].into_boxed_slice(); ydim_size].into_boxed_slice();
             xdim_size
@@ -52,7 +50,7 @@ impl Harrt {
         xdim_size: usize,
         ydim_size: usize,
         zdim_size: usize,
-    ) -> darray_3d<f32> {
+    ) -> Darray3d<f32> {
         vec![
             vec![vec![0f32; zdim_size].into_boxed_slice(); ydim_size].into_boxed_slice();
             xdim_size
@@ -64,7 +62,7 @@ impl Harrt {
         xdim_size: usize,
         ydim_size: usize,
         zdim_size: usize,
-    ) -> darray_3d<i32> {
+    ) -> Darray3d<i32> {
         vec![
             vec![vec![0i32; zdim_size].into_boxed_slice(); ydim_size].into_boxed_slice();
             xdim_size
@@ -73,6 +71,9 @@ impl Harrt {
     }
 }
 
+/// =============== ============== =============== =============== =============== \\\
+///                                Heap Array Tests                                \\\
+/// =============== ============== =============== =============== =============== \\\
 #[test]
 fn test_cc_d() {
     let data = Harrt::heap_array_create::<i32>(10);

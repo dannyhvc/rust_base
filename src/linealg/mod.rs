@@ -1,14 +1,12 @@
 /// @author: Daniel Herrera
 /// @date: 04/08/2021
-
-#[allow(non_camel_case_types, unused, non_snake_case, dead_code)]
-use std::mem::{size_of, size_of_val};
+use std::mem::size_of_val;
 
 ///
 /// matrix_algebra module
 ///
 pub mod matrix_algebra {
-    use crate::custom_container::{darray_2d, Harrt};
+    use crate::custom_container::{Darray2d, Harrt};
 
     ///
     /// Matrix trait definition
@@ -29,14 +27,14 @@ pub mod matrix_algebra {
     pub struct MatrixNxN {
         pub m_rows: usize,
         pub m_cols: usize,
-        pub m_data: darray_2d<f32>,
+        pub m_data: Darray2d<f32>,
     }
 
     #[derive(Debug)]
     pub struct MatrixNxM {
         pub m_rows: usize,
         pub m_cols: usize,
-        pub m_data: darray_2d<f32>,
+        pub m_data: Darray2d<f32>,
     }
 
     ///
@@ -238,8 +236,6 @@ fn test_ma_identity_nxn() {
 #[test]
 fn test_ma_zeros_nxn() {
     // use self::matrix_algebra::Matrix_fns;
-    use std::mem::size_of_val;
-
     let ma = matrix_algebra::MatrixNxN::zeros(10, 10);
     const FAT_PTR_SIZE: usize = 16;
 
@@ -263,8 +259,6 @@ fn test_ma_identity_nxm() {
 #[test]
 fn test_ma_zeros_nxm() {
     // use self::matrix_algebra::Matrix_fns;
-    use std::mem::size_of_val;
-
     let ma = matrix_algebra::MatrixNxM::zeros(10, 5);
     const FAT_PTR_SIZE: usize = 16;
 
